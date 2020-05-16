@@ -66,7 +66,8 @@ Follow these instructions to get it going (credit to part of these instructions 
 # log into the remote cluster and pipe between localhost port $PORT locally and remotely 
 ssh -L $PORT:localhost:$PORT $SERVER_ID
 # we are now in the server
-# we want to be able to end our SSH session and resume where we left off. so let's use a screen session (tmux would also work). we will name the session jupyterlab for easy access later
+# we want to be able to end our SSH session and resume where we left off.
+# let's use a screen session (tmux would also work). we will name the session jupyterlab for easy access later
 screen -S jupyterlab
 # we are now in the screen session
 # let's run an interactive CPU job
