@@ -39,7 +39,8 @@ conda install -c conda-forge jupyterlab
 ### Step 3: Launch a local JupyterLab server
 Launching a jupyterlab server is now as easy as: 
 ```bash
-jupyterlab
+jupyter-lab
+# now open a browser and go to the address given by the jupyter-lab terminal output
 ```
 Explore the interface. Much better than regular Jupyter Notebooks. Although still lacking in some areas. For that, we can install (or even develop!) extensions. I recommend installing the following 3 which are sure to improve your experience:
 ```bash
