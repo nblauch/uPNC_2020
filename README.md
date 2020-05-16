@@ -57,6 +57,27 @@ jupyter labextension install @lckr/jupyterlab_variableinspector
 Many more useful extensions can be found [here](https://awesomeopensource.com/projects/jupyterlab-extension)
 
 ### Step 3b (bonus): Set up a remote JupyterLab server
+For this step, you need to have a remote machine to SSH in to. We will pretend that you have an environment variable pointing to its address called `SERVER_ID`. We will assume you are logging into the CNBC Mind cluster. Other clusters using SLURM will require a nearly identical approach. Launching a remote JupyterLab server is incredibly useful, and allows you to run interactive jobs, and plotting, all in one environment and taking advantage of the resources of your computing cluster. For example, you can work on code that requires a GPU or more RAM than your local machine has available. Cool. It is the same basic idea as launching a local server, with a couple added ingredients. 
+  - an interactive job launched on the remote server in which you can run jupyterlab, ideally within a `screen` or `tmux` session to allow you to leave the jupyterlab server running after disconnecting your SSH connection. 
+  - SSH piping. We will assume you have an environment variable `PORT=8888` for example, but we will refer to it by the variable name so you can use a port that is available.  
+
+Follow these instructions to get it going (credit to part of these instructions goes to PNC/ML Ph.D. student Jayanth Koushik).
+```bash
+# log into the remote cluster and pipe between localhost port $PORT locally and remotely 
+ssh -L $PORT:localhost:$PORT $SERVER_ID
+# we are now in the server
+# we want to be able to end our SSH session and resume where we left off. so let's use a screen session (tmux would also work). we will name the session jupyterlab for easy access later
+screen -S jupyterlab
+# we are now in the screen session
+# let's run an interactive CPU job
+srun -p cpu --cpus-per-task=6 --gres=gpu:0 --mem=20GB --time=14-00:00:00 --pty bash
+# we are now in the interactive job
+# we need the ssh port to reach inside the computing node we are on
+ssh -N -f -R $PORT:localhost:$PORT $SLURM_SUBMIT_HOST
+# now when we launch the jupyterlab server, we will be able to access it locally!
+jupyter-lab --no-browser --port=$PORT
+```
+Now, open a browser and go to `localhost:$PORT/lab` (but type in the port number) 
 
 ### Step 4: Create a conda virtual environment 
 For simple Python use, one base installation is usually fine. But once you start working on multiple projects, or interacting with other people's code, it gets to be very dangerous to do all of this in one environment. Further, it makes reproducing your results much more difficult. Virtual environments were developed to solve this problem. Python has virtual environments natively, but we recommend using conda environments which are even more isolated than virtual environments (at the expense of greater disk use) and can control the environment beyond just the python packages. For more insight into the differences between conda and standard virtual environments, do some googling. Additionally, we have provided a solution to using conda environments within JupyterLab, whereas we do not know how to do so for python virtual envs (there is probably a solution somewhere...). 
