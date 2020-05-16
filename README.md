@@ -80,6 +80,8 @@ jupyter-lab --no-browser --port=$PORT
 ```
 Now, open a browser and go to `localhost:$PORT/lab` (but type in the port number) 
 
+You can kill your SSH session, turn off your computer, etc. and the jupyterlab server will still be there (until it is killed remotely or your interactive job expires). Just remember to pipe through the correct port when you SSH in.
+
 ### Step 4: Create a conda virtual environment 
 For simple Python use, one base installation is usually fine. But once you start working on multiple projects, or interacting with other people's code, it gets to be very dangerous to do all of this in one environment. Further, it makes reproducing your results much more difficult. Virtual environments were developed to solve this problem. Python has virtual environments natively, but we recommend using conda environments which are even more isolated than virtual environments (at the expense of greater disk use) and can control the environment beyond just the python packages. For more insight into the differences between conda and standard virtual environments, do some googling. Additionally, we have provided a solution to using conda environments within JupyterLab, whereas we do not know how to do so for python virtual envs (there is probably a solution somewhere...). 
 
