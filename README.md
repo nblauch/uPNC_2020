@@ -1,4 +1,4 @@
-# uPNC_2020
+# Undergraduate Program in Neural Computation (uPNC) 2020
 Welcome to the GitHub page for the Summer 2020 undergraduate Program in Neural Computation at the Center for the Neural Basis of Cognition, University of Pittsburgh and Carnegie Mellon University.
 ## Setup
 Throughout the 2 week bootcamp introduction to the program, we will be doing computational exercises to go along with the faculty research lectures. We have tried to make most of them in Python, which we believe is the best single language for computational neuroscience in 2020. Python is an object-oriented language with great strengths in scientific computing, including incredible packages for neuroimaging, psychophysical experimentation, and machine learning. 
@@ -37,7 +37,47 @@ conda install -c conda-forge jupyterlab
 ```
 
 ### Step 3: Launch a local JupyterLab server
+Launching a jupyterlab server is now as easy as: 
+```bash
+jupyterlab
+```
+Explore the interface. Much better than regular Jupyter Notebooks. Although still lacking in some areas. For that, we can install (or even develop!) extensions. I recommend installing the following 3 which are sure to improve your experience:
+```bash
+# a file tree
+jupyter labextension install jupyterlab_filetree
+
+# table of contents for notebooks (super awesome!!!)
+jupyter labextension install @jupyterlab/toc
+
+# variable explorer (similar to those offered in various IDEs)
+jupyter labextension install @lckr/jupyterlab_variableinspector
+
+```
+
+Many more useful extensions can be found [here](https://awesomeopensource.com/projects/jupyterlab-extension)
 
 ### Step 3b (bonus): Set up a remote JupyterLab server
 
 ### Step 4: Create a conda virtual environment 
+For simple Python use, one base installation is usually fine. But once you start working on multiple projects, or interacting with other people's code, it gets to be very dangerous to do all of this in one environment. Further, it makes reproducing your results much more difficult. Virtual environments were developed to solve this problem. Python has virtual environments natively, but we recommend using conda environments which are even more isolated than virtual environments (at the expense of greater disk use) and can control the environment beyond just the python packages. For more insight into the differences between conda and standard virtual environments, do some googling. Additionally, we have provided a solution to using conda environments within JupyterLab, whereas we do not know how to do so for python virtual envs (there is probably a solution somewhere...). 
+
+Open a terminal/command prompt and create a conda virtual environment:
+```bash
+# using the base python version, i.e. 3.7
+conda env create --name upnc
+# using the base python version, and additionally installing the full anaconda distrubiton
+conda env create --name upnc anaconda
+# if for some reason you need python 2
+conda env create --name upnc_2 --python=2.7
+# for help on the env creation function
+conda env --help
+```
+
+I recommend installing the conda kernels extension, which will make it easy to switch between different virtual environments (e.g. for different projects with different requirements) within the same JupyterLab server. 
+```bash
+# assuming you are launching jupyterlab from the base environment
+conda install nb_conda_kernels
+# then just install ipykernel in other environments to allow them to show up in jupyterlab from the base env
+conda activate upnc
+conda install ipykernel
+```
