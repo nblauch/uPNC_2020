@@ -61,7 +61,7 @@ For this step, you need to have a remote machine to SSH in to. We will pretend t
   - an interactive job launched on the remote server in which you can run jupyterlab, ideally within a `screen` or `tmux` session to allow you to leave the jupyterlab server running after disconnecting your SSH connection. 
   - SSH piping. We will assume you have an environment variable `PORT=8888` for example, but we will refer to it by the variable name so you can use a port that is available.  
 
-Follow these instructions to get it going (credit to part of these instructions goes to PNC/ML Ph.D. student Jayanth Koushik).
+Follow these instructions to get it going (credit to the approach taken here goes to PNC/ML Ph.D. student Jayanth Koushik).
 ```bash
 # log into the remote cluster and pipe between localhost port $PORT locally and remotely 
 ssh -L $PORT:localhost:$PORT $SERVER_ID
