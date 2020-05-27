@@ -57,6 +57,7 @@ jupyter labextension install @jupyterlab/toc
 jupyter labextension install @lckr/jupyterlab_variableinspector
 
 ```
+After you install the extensions, you might need to restart your JupyterLab server for them to take effect. If they are working, you will see extra icons on the left side of JupyterLab. 
 
 Many more useful extensions can be found [here](https://awesomeopensource.com/projects/jupyterlab-extension)
 
