@@ -44,6 +44,9 @@ jupyter-lab
 ```
 Explore the interface. Much better than regular Jupyter Notebooks. Although still lacking in some areas. For that, we can install (or even develop!) extensions. I recommend installing the following 3 which are sure to improve your experience:
 ```bash
+# we will need nodejs for the extensions
+conda install nodejs
+
 # a file tree
 jupyter labextension install jupyterlab_filetree
 
