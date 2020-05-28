@@ -93,11 +93,11 @@ For simple Python use, one base installation is usually fine. But once you start
 Open a terminal/command prompt and create a conda virtual environment:
 ```bash
 # using the base python version, i.e. 3.7
-conda env create --name upnc
+conda create --name upnc
 # using the base python version, and additionally installing the full anaconda distrubiton
-conda env create --name upnc anaconda
+conda create --name upnc anaconda
 # if for some reason you need python 2
-conda env create --name upnc_2 --python=2.7
+conda create --name upnc_2 --python=2.7
 # for help on the env creation function
 conda env --help
 ```
